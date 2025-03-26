@@ -6,7 +6,7 @@ const Home = () => {
     <S.Container>
       <SideBar />
       <S.ContentArea>
-        
+        awdawd
       </S.ContentArea>
     </S.Container>
   );

@@ -38,7 +38,7 @@ const SideBar = () => {
 
       <S.Footer>
         <p>Precisa de ajuda?</p>
-        <a href="">Suporte</a>
+        <a href="/suporte">Suporte</a>
       </S.Footer>
     </S.Container>
   );
