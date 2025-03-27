@@ -5,6 +5,7 @@ const Home = () => {
   return (
     <S.Container>
       <SideBar />
+      
       <S.ContentArea>
         
       </S.ContentArea>
