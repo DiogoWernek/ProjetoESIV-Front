@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface sidebarStatusProps {
+  closed: boolean;
+}
+
+export const Container = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'closed'
+})<sidebarStatusProps>`
   padding: 1rem;
   
   gap: 0.5rem;
   display: flex;
+  opacity: ${(props) => (props.closed ? '0' : '1')};
+  transition: ${(props) => ((props.closed == true) ? '0' : 'opacity 1s 0.2s')};
 
   .user-photo {
     width: 1.875rem;
@@ -25,10 +33,13 @@ export const Container = styled.div`
   }
 `
 
-export const UserName = styled.div`
+export const UserName = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'closed'
+})<sidebarStatusProps>`
 
   p {
     color: #FFFFFF;
-    font-size: 1rem;
+    white-space: nowrap;
+    font-size: ${(props) => (props.closed ? '0' : '1rem')};
   }
 `

@@ -1,28 +1,51 @@
 import styled from "styled-components";
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
-export const Container = styled.div`
+interface sidebarStatusProps {
+  closed: boolean;
+}
+
+export const Container = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'closed'
+})<sidebarStatusProps>`
   width: 100%;
   height: 100%;
-  max-width: 15rem;
-  padding: 1.5rem 0;
-  
+  max-width: ${(props) => (props.closed ? '4rem' : '15rem')};
+
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
-  
+
   background-color: #2662D9;
   justify-content: space-between;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+`;
 
-  @media (max-width: 768px) {
-    max-width: 4.5rem;
+export const ToggleButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== 'closed'
+})<sidebarStatusProps>`
+  all: unset;
+  cursor: pointer;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #245BCB;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  
+  svg {
+    transform: ${(props) => (props.closed ? 'rotate(180deg)' : 'rotate(0)')};
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    filter: brightness(105%);
   }
 `;
 
 export const PagesContainer = styled.div`
   padding: 0 0.75rem;
-  
   gap: 0.5rem;
   flex-grow: 1;
   display: flex;
@@ -62,19 +85,16 @@ export const StyledNavLink = styled(NavLink)<{ $active?: boolean }>`
     &::before {
       content: '';
       position: absolute;
-      
       top: 0;
       left: 0;
       bottom: 0;
       width: 3px;
-      
       background-color: white;
       border-radius: 0 3px 3px 0;
     }
   `}
 
   span {
-    
     @media (max-width: 768px) {
       display: none;
     }
@@ -91,7 +111,7 @@ export const Footer = styled.div`
   color: white;
   text-align: center;
   font-size: 0.875rem;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
   background-color: #245BCB;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 
