@@ -1,7 +1,7 @@
 import * as S from "./styles";
 import UserProfile from "../userProfile";
 import { Users, Gear, House, ArrowLeft } from "@phosphor-icons/react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { useState } from "react";
 
 const SideBar = () => {
