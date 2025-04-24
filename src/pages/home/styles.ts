@@ -13,8 +13,15 @@ export const ContentArea = styled.div`
   padding: 3rem;
   overflow-y: auto;
   flex-direction: row;
+  display: flex;
+  justify-content: center;
   
   background-color: #f8f9fa;
+
+  .wrapper {
+    width: 100%;
+    max-width: 85%;
+  }
 
   .header {
     display: flex;
