@@ -2,14 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-    height: 100%;
-    max-width: 15.625rem;
-    margin-top: 2rem;
 
     padding: 1rem;
     background-color: white;
     border-radius: 1rem;
     box-shadow: #00000029 4px 4px 14px 0px;
+    transition: transform 300ms ease;
 
     .cardsContainer {
         display: flex;
@@ -17,16 +15,37 @@ export const Container = styled.div`
         align-items: center;
 
         .numbers {
+            gap: 0.4rem;
             display: flex;
             flex-direction: column;
+
+            p {
+                font-size: 0.8rem;
+                color: #797981;
+            }
+
+            span {
+                font-weight: 800;
+            }
+
+            .sub-numbers {
+                p {
+                    font-size: 0.7rem;
+                }
+            }
         }
 
         .icon {
-            padding: 0.2rem;
+            padding: 0.3rem;
             display: flex;
             align-items: center;
             background-color: #E8EEFA;
             border-radius: 50%;
         }
+    }
+
+    &:hover {
+        transition: transform 300ms ease;
+        transform: scale(1.03);
     }
 `
