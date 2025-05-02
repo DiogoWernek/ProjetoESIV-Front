@@ -5,11 +5,14 @@ type ButtonProps = React.ComponentProps<"button"> & {
   isLoading?: boolean;
   color?: string;
   textColor?: string;
+  border?: string;
+  rounded?: boolean;
+  fs?: string;
 }
 
-export function Button({ children, isLoading, type = "button", color, textColor, ...rest }: ButtonProps) {
+export function Button({ children, isLoading, type = "button", color, textColor, border, rounded, fs, ...rest }: ButtonProps) {
   return (
-    <S.Button type={type} disabled={isLoading} color={color} textColor={textColor} {...rest}>
+    <S.Button type={type} disabled={isLoading} color={color} textColor={textColor} border={border} rounded={rounded} fs={fs} {...rest}>
       {children}
     </S.Button>
   );

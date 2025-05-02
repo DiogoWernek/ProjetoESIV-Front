@@ -2,11 +2,14 @@ import * as S from "./styles";
 import UserProfile from "../userProfile";
 import { Users, Gear, House, ArrowLeft } from "@phosphor-icons/react";
 import { useLocation } from "react-router";
-import { useState } from "react";
 
-const SideBar = () => {
+interface SideBarProps {
+  closed: "open" | "closed";
+  setClosed: React.Dispatch<React.SetStateAction<"open" | "closed">>;
+}
+
+const SideBar = ({ closed, setClosed }: SideBarProps) => {
   const location = useLocation();
-  const [closed, setClosed] = useState<"closed" | "open">("open");
 
   const toggleSidebar = () => {
     setClosed((prev) => (prev === "open" ? "closed" : "open"));

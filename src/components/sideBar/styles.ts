@@ -8,8 +8,9 @@ interface sidebarStatusProps {
 export const Container = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== 'closed'
 })<sidebarStatusProps>`
+  position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   max-width: ${(props) => (props.closed ? '4rem' : '15rem')};
 
   display: flex;
