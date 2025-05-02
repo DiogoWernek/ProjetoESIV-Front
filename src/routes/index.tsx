@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router";
-import { MyRoutes } from "./myRoutes";
+import { MyRoutes } from "./MyRoutes";
 
 export function MainRoutes() {
   return (

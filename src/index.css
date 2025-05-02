@@ -26,3 +26,16 @@ button {
 a {
   color: inherit;
 }
+
+::-webkit-scrollbar-track {
+  background: #bbbbbb;
+}
+
+::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dad9d9;
+  border-radius: 1rem;
+}
