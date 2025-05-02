@@ -14,7 +14,6 @@ export function Clients() {
       <S.ContentArea closed={sidebarClosed}>
         <div className="wrapper" style={{ width: '100%', maxWidth: "85%" }}>
 
-        
         <div className="texts-clients" style={{ width: '100%', display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{display: 'flex', flexDirection: "column", gap: "0.5rem" }}>
             <h1>Clientes</h1>
@@ -25,9 +24,14 @@ export function Clients() {
           </Button>
         </div>
 
-        <div className="search-clients"></div>
+        <div className="search-clients">
 
-        <div className="cards-clients"></div>
+        </div>
+
+        <div className="cards-clients">
+          
+        </div>
+        
         </div>
       </S.ContentArea>
     </S.Container>
