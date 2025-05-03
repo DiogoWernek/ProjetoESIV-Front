@@ -10,10 +10,57 @@ import {
 import * as S from "./styles";
 import { Card } from "../../components/cards";
 import { CardCliente } from "../../components/cardClient";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
+import { toCNPJorCPF } from "../../utils/ToCNPJ";
+import { toDATE } from "../../utils/ToDATE";
+import { Loading } from "../Loading";
+import { formatPhone } from "../../utils/toNumberPhone";
 
 const Home = () => {
   const [sidebarClosed, setSidebarClosed] = useState<"open" | "closed">("open");
+  const [companies, setCompanies] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalClients, setTotalClients] = useState(0);
+  const [totalActives, setTotalActives] = useState(0);
+  const [totalLegalEntity, setTotalLegalEntity] = useState(0);
+  const [totalNaturalPerson, setTotalNaturalPerson] = useState(0);
+
+  const getComapanies = async () => {
+    try {
+      setIsLoading(true);
+      const response = await api.get("/companies");
+      const data = response.data;
+
+      setCompanies(data);
+      setTotalClients(data.length);
+
+      const activeClients = data.filter((company: any) => company.isActive);
+      setTotalActives(activeClients.length);
+
+      const isCNPJ = (value: string) => value.replace(/\D/g, "").length === 14;
+      const isCPF = (value: string) => value.replace(/\D/g, "").length === 11;
+
+      const totalLegalEntity = data.filter((company: any) => isCNPJ(company.cnpj)).length;
+      const totalNaturalPerson = data.filter((company: any) => isCPF(company.cnpj)).length;
+
+      setTotalLegalEntity(totalLegalEntity);
+      setTotalNaturalPerson(totalNaturalPerson);
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    getComapanies();
+  }, [])
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <S.Container>
@@ -27,22 +74,22 @@ const Home = () => {
               <p>Gerencie seus clientes de forma simples e intuitiva</p>
             </div>
 
-            <Button color="#2662D9" rounded>
+            <Button color="#2662D9" rounded={true}>
               <UserPlus size={24} /> Novo Cliente
             </Button>
           </div>
 
           <div className="cards">
-            <Card number={5} textHeader="Total de clientes">
+            <Card number={totalClients} textHeader="Total de clientes">
               <UsersThree size={24} color="#2662D9" />
             </Card>
-            <Card number={4} subNumber="de 5" textHeader="Clientes Ativos">
+            <Card number={totalActives} subNumber={`de ${totalClients}`} textHeader="Clientes Ativos">
               <UserCheck size={24} color="#2662D9" />
             </Card>
-            <Card number={3} textHeader="Empresas">
+            <Card number={totalLegalEntity} textHeader="Empresas">
               <Building size={24} color="#2662D9" />
             </Card>
-            <Card number={2} textHeader="Pessoas Físicas">
+            <Card number={totalNaturalPerson} textHeader="Pessoas Físicas">
               <User size={24} color="#2662D9" />
             </Card>
           </div>
@@ -53,41 +100,19 @@ const Home = () => {
               <p>Visualize e gerencie os últimos usuários cadastrados</p>
             </div>
             <div className="cards-clients">
-              <CardCliente
-                name="Empresa Ltda."
-                active={true}
-                cnpj="12.1233/2312-3"
-                email="Diogo@diogo.com"
-                phone="(25) 23324-3244"
-                updated_at="23/04/2004"
-              />
+              {companies.slice(0, 4).map((company, index) => (
 
-              <CardCliente
-                name="Empresa Ltda."
-                active={false}
-                cnpj="12.1233/2312-3"
-                email="Diogo@diogo.com"
-                phone="(25) 23324-3244"
-                updated_at="23/04/2004"
-              />
+                <CardCliente
+                  key={index}
+                  name={company.companyFantasyName}
+                  active={company.isActive}
+                  cnpj={toCNPJorCPF(company.cnpj)}
+                  email={company.companyEmail}
+                  phone={formatPhone(company.companyPhoneCode, company.companyPhone)}
+                  updated_at={toDATE(company.companyBirthDate)}
+                />
 
-              <CardCliente
-                name="Empresa Ltda."
-                active={true}
-                cnpj="12.1233/2312-3"
-                email="Diogo@diogo.com"
-                phone="(25) 23324-3244"
-                updated_at="23/04/2004"
-              />
-
-              <CardCliente
-                name="Empresa Ltda."
-                active={true}
-                cnpj="12.1233/2312-3"
-                email="Diogo@diogo.com"
-                phone="(25) 23324-3244"
-                updated_at="23/04/2004"
-              />
+              ))}
             </div>
 
             <div
