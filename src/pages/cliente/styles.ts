@@ -16,35 +16,19 @@ export const ContentArea = styled.div<ContentAreaProps>`
   height: 100%;
   padding-block: 3rem;
   overflow-y: auto;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   display: flex;
   justify-content: center;
-  
-  background-color: #f8f9fa;
 
-  .texts-clients {
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    p {
-      font-size: 0.875rem;
-      color: #9B9BA1;
-    }
-  }
-
-  .search-clients {
-    width: fit-content;
-    background-color: #fff;
-    border: 2px solid #E4E4E7;
-    border-radius: 0.5rem;
-  }
-
-  .cards-clients {
+  .back-button {
     gap: 1rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-columns: repeat(auto-fit, minmax(31rem, 1fr));
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    a {
+      cursor: pointer;
+    }
   }
 `

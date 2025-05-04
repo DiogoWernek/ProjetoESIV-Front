@@ -1,24 +1,24 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "userName": "CarlosSilva",
       "password": "senha123"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "MariaDev",
       "password": "senha456"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "PedroTech",
       "password": "senha789"
     }
   ],
   "companies": [
     {
-      "id": 1,
+      "id": "1",
       "companyFantasyName": "Tech Brasil",
       "cnpj": "11223344000155",
       "companyAddressStreet": "Rua das Inovações 100",
@@ -41,7 +41,7 @@
       "isActive": true
     },
     {
-      "id": 2,
+      "id": "2",
       "companyFantasyName": "Luana Ribeiro",
       "cnpj": "99988877766",
       "companyAddressStreet": "Rua das Palmeiras 321",
@@ -64,7 +64,7 @@
       "isActive": true
     },
     {
-      "id": 3,
+      "id": "3",
       "companyFantasyName": "Soluções Alfa",
       "cnpj": "12345678000100",
       "companyAddressStreet": "Avenida Central 500",
@@ -87,7 +87,7 @@
       "isActive": false
     },
     {
-      "id": 4,
+      "id": "4",
       "companyFantasyName": "Carlos Moura",
       "cnpj": "11122233344",
       "companyAddressStreet": "Rua das Laranjeiras 67",
@@ -110,7 +110,7 @@
       "isActive": true
     },
     {
-      "id": 5,
+      "id": "5",
       "companyFantasyName": "Oficina do Saber",
       "cnpj": "99887766000112",
       "companyAddressStreet": "Rua do Conhecimento 89",
@@ -132,7 +132,7 @@
       "isActive": false
     },
     {
-      "id": 6,
+      "id": "6",
       "companyFantasyName": "Julia Almeida",
       "cnpj": "23456789000",
       "companyAddressStreet": "Avenida das Rosas 1040",
@@ -154,7 +154,7 @@
       "isActive": true
     },
     {
-      "id": 7,
+      "id": "7",
       "companyFantasyName": "Lucas Andrade",
       "cnpj": "54321098700",
       "companyAddressStreet": "Rua do Comércio 222",
@@ -176,7 +176,7 @@
       "isActive": true
     },
     {
-      "id": 8,
+      "id": "8",
       "companyFantasyName": "Nina Borges",
       "cnpj": "33221100055",
       "companyAddressStreet": "Rua das Hortências 90",
@@ -198,7 +198,7 @@
       "isActive": true
     },
     {
-      "id": 9,
+      "id": "9",
       "companyFantasyName": "Inova Móveis",
       "cnpj": "55667788000177",
       "companyAddressStreet": "Avenida Industrial 300",
@@ -220,7 +220,7 @@
       "isActive": true
     },
     {
-      "id": 10,
+      "id": "10",
       "companyFantasyName": "Delta Equipamentos",
       "cnpj": "44556677000122",
       "companyAddressStreet": "Rua das Engenharias 500",
@@ -242,7 +242,7 @@
       "isActive": true
     },
     {
-      "id": 11,
+      "id": "11",
       "companyFantasyName": "Gláucia Ribeiro",
       "cnpj": "11221122112",
       "companyAddressStreet": "Rua Nova Esperança 20",
@@ -264,7 +264,7 @@
       "isActive": true
     },
     {
-      "id": 12,
+      "id": "12",
       "companyFantasyName": "Montana Bikes",
       "cnpj": "99887766000111",
       "companyAddressStreet": "Rua da Aventura 1024",
@@ -286,7 +286,7 @@
       "isActive": true
     },
     {
-      "id": 13,
+      "id": "13",
       "companyFantasyName": "Montana Bikes - Filial",
       "cnpj": "99887766000200",
       "companyAddressStreet": "Rodovia Central KM 200",
@@ -308,7 +308,7 @@
       "isActive": true
     },
     {
-      "id": 14,
+      "id": "14",
       "companyFantasyName": "VEGA AUTOS",
       "cnpj": "23456789000100",
       "companyAddressStreet": "Rua dos Motores 6751",

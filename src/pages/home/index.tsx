@@ -15,7 +15,8 @@ import { api } from "../../services/api";
 import { toCNPJorCPF } from "../../utils/ToCNPJ";
 import { toDATE } from "../../utils/ToDATE";
 import { Loading } from "../Loading";
-import { formatPhone } from "../../utils/toNumberPhone";
+import { formatPhone } from "../../utils/ToNumberPhone";
+import { useNavigate } from "react-router";
 
 const Home = () => {
   const [sidebarClosed, setSidebarClosed] = useState<"open" | "closed">("open");
@@ -53,6 +54,12 @@ const Home = () => {
       setIsLoading(false)
     }
   }
+
+  const navigate = useNavigate()
+
+  const handleClientClick = (id: string) => {
+    navigate(`/cliente/${id}`);
+  };  
 
   useEffect(() => {
     getComapanies();
@@ -110,6 +117,7 @@ const Home = () => {
                   email={company.companyEmail}
                   phone={formatPhone(company.companyPhoneCode, company.companyPhone)}
                   updated_at={toDATE(company.companyBirthDate)}
+                  onClick={() => handleClientClick(company.id)}
                 />
 
               ))}

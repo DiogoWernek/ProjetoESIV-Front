@@ -16,10 +16,11 @@ export const Button = styled.button<ButtonProps>`
   align-items: center;
   gap: 0.5rem;
   padding: 0.5625rem 1rem;
+  max-height: 2.8125rem;
   border-radius: 1.125rem;
   border-radius: ${({ rounded }) => (rounded ? '1.125rem' : '8px')};
 
-  background-color: ${({ color }) => (color ? color : 'blue')};
+  background-color: ${({ color }) => (color ? color : '#2662D9')};
   color: ${({ textColor }) => (textColor ? textColor : '#FFFFFF')};
   border: 2px solid ${({ border }) => (border ? border : 'transparent')};
   border-color: ${({ border }) => (border ? border : '')};

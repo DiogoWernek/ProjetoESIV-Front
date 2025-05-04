@@ -8,11 +8,12 @@ type CardClienteProps = {
   email: string;
   phone: string;
   updated_at: string;
+  onClick?: () => void;
 }
 
-export function CardCliente({ name, active, cnpj, email, phone, updated_at }: CardClienteProps) {
+export function CardCliente({ name, active, cnpj, email, phone, updated_at, onClick }: CardClienteProps) {
   return (
-    <S.Container active={active}>
+    <S.Container active={active} onClick={onClick}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <h2>{name}</h2>

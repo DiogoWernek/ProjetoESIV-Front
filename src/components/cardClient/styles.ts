@@ -12,9 +12,11 @@ export const Container = styled.div.withConfig({
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 1rem;
   border: 2px solid #e9ecef;
   border-radius: 1rem;
+  background-color: #fff;
+  transition: 0.3s;
 
   h2 {
     font-size: 13px;
@@ -32,5 +34,11 @@ export const Container = styled.div.withConfig({
     border-radius: 1rem;
     background-color: ${(props) => props.active === true ? "#D9F7E8" : "#F8D7DA"};
     color: ${(props) => props.active === true ? "#00773c" : "#b03d37"};
+  }
+
+  &:hover {
+    transition: 0.3s;
+    cursor: pointer;
+    border: 2px solid #2662D9;
   }
 `
