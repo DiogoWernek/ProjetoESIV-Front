@@ -27,12 +27,12 @@ export function Cliente() {
         >
           <div className="back-button">
             <a
-              style={{ display: "flex", alignItems: "center" }}
+              style={{ gap: "0.3rem", display: "flex", alignItems: "center" }}
               onClick={() => navigate(-1)}
             >
               <ArrowLeft size={16} /> Voltar
             </a>
-            <h1>Novo Cliente</h1>
+            <h1>Editar usuário</h1>
           </div>
 
           <div className="form">
