@@ -111,12 +111,12 @@ const Home = () => {
 
                 <CardCliente
                   key={index}
-                  name={company.companyFantasyName}
+                  name={company.FantasyName}
                   active={company.isActive}
                   cnpj={toCNPJorCPF(company.cnpj)}
-                  email={company.companyEmail}
-                  phone={formatPhone(company.companyPhoneCode, company.companyPhone)}
-                  updated_at={toDATE(company.companyBirthDate)}
+                  email={company.Email}
+                  phone={formatPhone(company.PhoneCode, company.Phone)}
+                  updated_at={toDATE(company.BirthDate)}
                   onClick={() => handleClientClick(company.id)}
                 />
 

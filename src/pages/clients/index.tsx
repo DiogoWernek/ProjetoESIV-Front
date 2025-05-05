@@ -40,7 +40,7 @@ export function Clients() {
 
   useEffect(() => {
     const filtered = allCompanies.filter((company) =>
-      company.companyFantasyName.toLowerCase().includes(search.toLowerCase())
+      company.FantasyName.toLowerCase().includes(search.toLowerCase())
     );
     setCompanies(filtered);
   }, [search, allCompanies]);
@@ -97,15 +97,15 @@ export function Clients() {
             {companies.map((company, index) => (
               <CardCliente
                 key={index}
-                name={company.companyFantasyName}
+                name={company.FantasyName}
                 active={company.isActive}
                 cnpj={toCNPJorCPF(company.cnpj)}
-                email={company.companyEmail}
+                email={company.Email}
                 phone={formatPhone(
-                  company.companyPhoneCode,
-                  company.companyPhone
+                  company.PhoneCode,
+                  company.Phone
                 )}
-                updated_at={toDATE(company.companyBirthDate)}
+                updated_at={toDATE(company.BirthDate)}
                 onClick={() => handleClientClick(company.id)}
               />
             ))}
