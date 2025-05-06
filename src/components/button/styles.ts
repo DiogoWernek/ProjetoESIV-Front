@@ -16,6 +16,7 @@ export const Button = styled.button<ButtonProps>`
   align-items: center;
   gap: 0.5rem;
   padding: 0.5625rem 1rem;
+  height: 24px;
   max-height: 2.8125rem;
   border-radius: 1.125rem;
   border-radius: ${({ rounded }) => (rounded ? '1.125rem' : '8px')};

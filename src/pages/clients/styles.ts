@@ -39,6 +39,7 @@ export const ContentArea = styled.div<ContentAreaProps>`
     background-color: #fff;
     border: 2px solid #E4E4E7;
     border-radius: 0.5rem;
+    box-shadow: #00000029 4px 4px 14px 0px;
   }
 
   .cards-clients {
