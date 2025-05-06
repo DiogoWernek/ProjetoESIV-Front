@@ -5,14 +5,14 @@ interface sidebarStatusProps {
 }
 
 export const Container = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== 'closed'
+  shouldForwardProp: (prop) => prop !== "closed",
 })<sidebarStatusProps>`
   padding: 1rem;
-  
+
   gap: 0.5rem;
   display: flex;
-  opacity: ${(props) => (props.closed ? '0' : '1')};
-  transition: ${(props) => ((props.closed == true) ? '0' : 'opacity 1s 0.2s')};
+  opacity: ${(props) => (props.closed ? "0" : "1")};
+  transition: ${(props) => (props.closed == true ? "0" : "opacity 1s 0.2s")};
 
   .user-photo {
     width: 1.875rem;
@@ -24,22 +24,24 @@ export const Container = styled.div.withConfig({
     justify-content: center;
 
     border-radius: 0.5rem;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 
     p {
-      color: #2662D9;
+      color: #2662d9;
       font-size: 1.2rem;
     }
   }
-`
+`;
 
 export const UserName = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== 'closed'
+  shouldForwardProp: (prop) => prop !== "closed",
 })<sidebarStatusProps>`
-
+  display: flex;
+  align-items: center;
+  
   p {
-    color: #FFFFFF;
+    color: #ffffff;
     white-space: nowrap;
-    font-size: ${(props) => (props.closed ? '0' : '1rem')};
+    font-size: ${(props) => (props.closed ? "0" : "1rem")};
   }
-`
+`;

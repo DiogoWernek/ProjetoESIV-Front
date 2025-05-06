@@ -1,8 +1,5 @@
-// src/services/api.ts
-import axios, { AxiosInstance } from 'axios';
+import axios from "axios";
 
-const api: AxiosInstance = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api',
-});
-
-export default api;
+export const api = axios.create({
+  baseURL: "http://localhost:3000"
+})
