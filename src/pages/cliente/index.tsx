@@ -59,8 +59,8 @@ export function Cliente() {
 
     if (name === "cnpj") {
       rawValue = unmask(value);
-      if (formData?.Type === "f") rawValue = rawValue.slice(0, 11); // CPF
-      if (formData?.Type === "r") rawValue = rawValue.slice(0, 14); // CNPJ
+      if (formData?.Type === "f") rawValue = rawValue.slice(0, 11);
+      if (formData?.Type === "r") rawValue = rawValue.slice(0, 14);
     }
 
     if (name === "Phone") {
