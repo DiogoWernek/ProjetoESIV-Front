@@ -329,6 +329,29 @@
       "BirthDate": "2016-09-10",
       "HomePage": "",
       "isActive": false
+    },
+    {
+      "id": "9ccf",
+      "FantasyName": "Diogo Araujo Wernek",
+      "cnpj": "47245804885",
+      "AddressStreet": "Rua Antônio Primo Nalesso",
+      "AddressDistrict": "Vila Rubens",
+      "LegalName": "",
+      "StoreIdNumber": 0,
+      "Type": "f",
+      "CEP": "18207385",
+      "State": "SP",
+      "CityCode": "3550308",
+      "City": "Itapetininga",
+      "Region": "Sudeste",
+      "CountryDescription": "Brasil",
+      "CountryId": "15",
+      "PhoneCode": "15",
+      "Phone": "997676890",
+      "BirthDate": "2005-06-17",
+      "HomePage": "github.com/diogowernek",
+      "Email": "diogo@wernek.com",
+      "isActive": true
     }
   ]
 }

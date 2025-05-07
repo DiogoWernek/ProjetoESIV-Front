@@ -89,7 +89,7 @@ export function Clients() {
                   <h1>Clientes</h1>
                   <p>Gerencie todos os seus clientes.</p>
                 </div>
-                <Button color="#2662D9" rounded={true}>
+                <Button color="#2662D9" rounded={true} onClick={() => window.location.href = "/novo-cliente"}>
                   <UserPlus size={24} />
                   Novo Cliente
                 </Button>

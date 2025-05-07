@@ -81,7 +81,7 @@ const Home = () => {
               <p>Gerencie seus clientes de forma simples e intuitiva</p>
             </div>
 
-            <Button color="#2662D9" rounded={true}>
+            <Button color="#2662D9" rounded={true} onClick={() => window.location.href = "/novo-cliente"}>
               <UserPlus size={24} /> Novo Cliente
             </Button>
           </div>
