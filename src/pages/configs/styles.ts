@@ -27,6 +27,7 @@ export const ContentArea = styled.div<ContentAreaProps>`
     display: flex;
     flex-direction: row;
     align-items: center;
+    align-self: flex-start;
 
     a {
       cursor: pointer;
@@ -38,6 +39,7 @@ export const ContentArea = styled.div<ContentAreaProps>`
     flex-direction: column;
     gap: 1rem;
     width: 85%;
+    align-items: center;
   }
 
   @media (max-width: 900px) {
@@ -52,9 +54,10 @@ export const Card = styled.div`
   border-radius: 8px;
   padding: 2rem;
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 22rem;
+  max-width: 100%;
 `;
 
 export const Tabs = styled.div`
