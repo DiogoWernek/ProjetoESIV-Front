@@ -30,8 +30,8 @@ const SideBar = ({ closed, setClosed }: SideBarProps) => {
       <UserProfile closed={closed} />
 
       <S.PagesContainer>
-        <S.StyledNavLink to="/" $active={isActive("/")}>
-          <House size={20} weight={isActive("/") ? "fill" : "regular"} />
+        <S.StyledNavLink to="/dashboard" $active={isActive("/dashboard")}>
+          <House size={20} weight={isActive("/dashboard") ? "fill" : "regular"} />
           {closed === "open" && <span>Home</span>}
         </S.StyledNavLink>
 
@@ -54,6 +54,20 @@ const SideBar = ({ closed, setClosed }: SideBarProps) => {
           {closed === "open" && <span>Configurações</span>}
         </S.StyledNavLink>
       </S.PagesContainer>
+
+      <div style={{ display: 'flex', flexDirection: "column", gap: "1rem", padding: "0 0.75rem", marginBottom: "0.5rem" }}>
+
+
+        {closed === "open" && (
+          <S.LogoutButton onClick={() => {
+            localStorage.clear();
+            window.location.href = "/";
+          }}>
+            Sair
+          </S.LogoutButton>
+        )}
+
+      </div>
 
       <S.Footer>
         {closed === "open" ? (

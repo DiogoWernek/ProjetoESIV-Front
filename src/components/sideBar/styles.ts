@@ -137,3 +137,20 @@ export const Footer = styled.div`
     }
   }
 `;
+
+export const LogoutButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #D93E3E;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  text-align: center;
+  font-weight: 500;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #b53232;
+  }
+`;

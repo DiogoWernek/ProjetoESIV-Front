@@ -7,6 +7,32 @@ interface SidebarStatus {
 
 const UserProfile = ({ closed }: SidebarStatus) => {
   const [show, setShow] = useState(false);
+  const [name, setName] = useState(localStorage.getItem("name") || "");
+  const [initial, setInitial] = useState(name.charAt(0).toUpperCase() || "C");
+
+  // Atualiza nome e inicial quando o localStorage muda
+  useEffect(() => {
+    const updateName = () => {
+      const storedName = localStorage.getItem("name") || "";
+      setName(storedName);
+      setInitial(storedName.charAt(0).toUpperCase() || "C");
+    };
+
+    // Atualiza se mudar em outra aba
+    window.addEventListener("storage", updateName);
+
+    // Verifica mudanças locais (como ao atualizar nas configurações)
+    const interval = setInterval(() => {
+      if (localStorage.getItem("name") !== name) {
+        updateName();
+      }
+    }, 1000); // verifica a cada segundo
+
+    return () => {
+      window.removeEventListener("storage", updateName);
+      clearInterval(interval);
+    };
+  }, [name]);
 
   useEffect(() => {
     if (closed === "closed") {
@@ -23,10 +49,10 @@ const UserProfile = ({ closed }: SidebarStatus) => {
     <div style={{ position: "relative" }}>
       <S.Container closed={closed === "closed"}>
         <div className="user-photo">
-          <p>D</p>
+          <p>{initial}</p>
         </div>
         <S.UserName closed={closed === "closed"}>
-          <p>Deividi Costinha</p>
+          <p>{name}</p>
         </S.UserName>
       </S.Container>
 
@@ -44,7 +70,7 @@ const UserProfile = ({ closed }: SidebarStatus) => {
             transition: "opacity 0.5s ease",
           }}
         >
-          D
+          {initial}
         </p>
       )}
     </div>

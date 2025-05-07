@@ -14,6 +14,26 @@
       "id": "3",
       "username": "PedroTech",
       "password": "senha789"
+    },
+    {
+      "userName": "Diogo Wernek",
+      "password": "123",
+      "id": "1b52"
+    },
+    {
+      "id": "2825",
+      "userName": "Ana Linda",
+      "password": "123456"
+    },
+    {
+      "id": "93dc",
+      "userName": "Opa",
+      "password": "123"
+    },
+    {
+      "id": "089d",
+      "userName": "awd",
+      "password": "231"
     }
   ],
   "companies": [
