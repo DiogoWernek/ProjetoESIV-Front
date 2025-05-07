@@ -10,7 +10,6 @@ const UserProfile = ({ closed }: SidebarStatus) => {
   const [name, setName] = useState(localStorage.getItem("name") || "");
   const [initial, setInitial] = useState(name.charAt(0).toUpperCase() || "C");
 
-  // Atualiza nome e inicial quando o localStorage muda
   useEffect(() => {
     const updateName = () => {
       const storedName = localStorage.getItem("name") || "";
@@ -18,15 +17,13 @@ const UserProfile = ({ closed }: SidebarStatus) => {
       setInitial(storedName.charAt(0).toUpperCase() || "C");
     };
 
-    // Atualiza se mudar em outra aba
     window.addEventListener("storage", updateName);
 
-    // Verifica mudanças locais (como ao atualizar nas configurações)
     const interval = setInterval(() => {
       if (localStorage.getItem("name") !== name) {
         updateName();
       }
-    }, 1000); // verifica a cada segundo
+    }, 1000);
 
     return () => {
       window.removeEventListener("storage", updateName);

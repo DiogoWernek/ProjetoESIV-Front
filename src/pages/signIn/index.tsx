@@ -19,8 +19,8 @@ export function SignIn() {
       if (res.data.length > 0) {
         const user = res.data[0];
 
-        localStorage.setItem("userId", user.id);      // salva o ID do usuário
-        localStorage.setItem("name", user.userName);  // salva o nome do usuário
+        localStorage.setItem("userId", user.id);
+        localStorage.setItem("name", user.userName);
 
         navigate("/dashboard");
       } else {
