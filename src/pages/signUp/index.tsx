@@ -9,13 +9,32 @@ export function SignUp() {
   
   const navigate = useNavigate();
 
+  // Função para verificar se o nome de usuário já existe
+  const checkUserNameExists = async (userName: string) => {
+    try {
+      const response = await api.get(`/users/exists/${userName}`);
+      return response.data.exists;  // Supondo que a API retorne um campo "exists"
+    } catch (error) {
+      console.error("Erro ao verificar nome de usuário:", error);
+      return false;  // Em caso de erro, assumimos que o nome de usuário não existe
+    }
+  };
+
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Verifica se o nome de usuário já existe
+    const userExists = await checkUserNameExists(userName);
+
+    if (userExists) {
+      alert("Esse nome de usuário já está em uso. Tente outro.");
+      return;  // Não prosseguir com o cadastro se o nome de usuário já existir
+    }
 
     try {
       await api.post("/users", { userName, password });
       alert("Usuário criado com sucesso!");
-      navigate("/");
+      navigate("/");  // Redireciona para a página de login após o cadastro
     } catch (error) {
       console.error("Erro ao criar usuário:", error);
       alert("Erro ao criar usuário.");
