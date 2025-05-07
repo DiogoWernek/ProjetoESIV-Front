@@ -2,11 +2,12 @@ import { useState } from "react";
 import * as S from "./styles";
 import { useNavigate } from "react-router";
 import { api } from "../../services/api";
+import { Store } from "react-notifications-component";
 
 export function SignUp() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const navigate = useNavigate();
 
   const checkUserNameExists = async (userName: string) => {
@@ -28,17 +29,53 @@ export function SignUp() {
     const userExists = await checkUserNameExists(userName);
 
     if (userExists) {
-      alert("Esse nome de usuário já está em uso. Tente outro.");
+      Store.addNotification({
+        title: "Erro!",
+        message: "Esse nome de usuário já está em uso. Tente outro.",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      })
       return;
     }
 
     try {
       await api.post("/users", { userName, password });
-      alert("Usuário criado com sucesso!");
+      Store.addNotification({
+        title: "Sucesso!",
+        message: "Usuário criado com sucesso!",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      })
       navigate("/");
     } catch (error) {
       console.error("Erro ao criar usuário:", error);
-      alert("Erro ao criar usuário.");
+      Store.addNotification({
+        title: "Erro!",
+        message: "Erro ao criar usuário.",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      })
     }
   };
 

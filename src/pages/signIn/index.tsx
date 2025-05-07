@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as S from "./styles";
 import { useNavigate } from "react-router";
 import { api } from "../../services/api";
+import { Store } from "react-notifications-component";
 
 export function SignIn() {
   const [userName, setUserName] = useState("");
@@ -24,11 +25,22 @@ export function SignIn() {
 
         navigate("/dashboard");
       } else {
-        alert("Credenciais inválidas.");
+        Store.addNotification({
+          title: "Erro!",
+          message: "Nome ou senha inválidos.",
+          type: "danger",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+              duration: 5000,
+              onScreen: true
+          }
+      });
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);
-      alert("Erro ao fazer login.");
     }
   };
 

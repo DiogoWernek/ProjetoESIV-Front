@@ -10,6 +10,7 @@ import {
   formatCPF,
   formatPhone,
 } from "../../utils/Formatters";
+import { Store } from "react-notifications-component";
 
 export function NewClient() {
   const [sidebarClosed, setSidebarClosed] = useState<"open" | "closed">("open");
@@ -66,11 +67,37 @@ export function NewClient() {
     e.preventDefault();
     try {
       await api.post("/companies", formData);
-      alert("Cliente criado com sucesso!");
+
+      Store.addNotification({
+        title: "Sucesso",
+        message: "Cliente criado com sucesso!",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
+
       navigate("/clientes");
     } catch (error) {
       console.error("Erro ao criar cliente:", error);
-      alert("Erro ao criar cliente.");
+      Store.addNotification({
+        title: "Erro!",
+        message: "Erro ao tentar criar o cliente, tente novamente.",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
     }
   };
 

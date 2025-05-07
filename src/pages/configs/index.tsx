@@ -5,6 +5,7 @@ import { Input } from "../../components/input";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { useNavigate } from "react-router";
 import { api } from "../../services/api";
+import { Store } from "react-notifications-component";
 
 export function Configuracoes() {
   const [sidebarClosed, setSidebarClosed] = useState<"open" | "closed">("open");
@@ -19,12 +20,36 @@ export function Configuracoes() {
     e.preventDefault();
 
     if (!userId) {
-      alert("ID do usuário não encontrado.");
+      Store.addNotification({
+        title: "Erro!",
+        message: "ID do usuário não encontrado.",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
       return;
     }
 
     if (password && password !== confirmPassword) {
-      alert("As senhas não coincidem.");
+      Store.addNotification({
+        title: "Erro!",
+        message: "As senhas não coincidem.",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
       return;
     }
 
@@ -35,10 +60,34 @@ export function Configuracoes() {
       });
 
       localStorage.setItem("name", userName);
-      alert("Dados atualizados com sucesso!");
+      Store.addNotification({
+        title: "Sucesso!",
+        message: "Dados atualizados com sucesso!",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
     } catch (error) {
       console.error("Erro ao atualizar perfil:", error);
-      alert("Erro ao atualizar os dados.");
+      Store.addNotification({
+        title: "Erro!",
+        message: "Erro ao atualizar os dados.",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
     }
   };
 

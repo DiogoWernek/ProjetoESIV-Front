@@ -11,6 +11,7 @@ import {
   formatDateToInput,
   formatPhone,
 } from "../../utils/Formatters";
+import { Store } from "react-notifications-component";
 
 interface Company {
   id: string;
@@ -100,11 +101,35 @@ export function Cliente() {
 
     try {
       await api.put(`/companies/${id}`, formData);
-      alert("Dados atualizados com sucesso!");
+      Store.addNotification({
+        title: "Sucesso!",
+        message: "Dados atualizados com sucesso.",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+            duration: 5000,
+            onScreen: true
+        }
+    });
       navigate("/clientes");
     } catch (error) {
       console.error("Erro ao atualizar os dados:", error);
-      alert("Erro ao atualizar os dados.");
+      Store.addNotification({
+        title: "Erro!",
+        message: "Erro ao tentar atualizar os dados, tente novamente.",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+            duration: 5000,
+            onScreen: true
+        }
+    });
     }
   };
 
