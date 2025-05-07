@@ -42,6 +42,7 @@ export const ContentArea = styled.div<ContentAreaProps>`
   .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     
     .textHeader {
     display: flex;
@@ -91,5 +92,11 @@ export const ContentArea = styled.div<ContentAreaProps>`
         flex-direction: column;
       }
     }
+  }
+
+  @media (max-width: 900px) {
+    margin-left: 0;
+    width: 100%;
+    padding-top: 4rem;
   }
 `;

@@ -9,17 +9,23 @@ export const Container = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== 'closed'
 })<sidebarStatusProps>`
   position: fixed;
-  width: 100%;
+  top: 0;
+  left: 0;
   height: 100vh;
+  width: 100%;
   max-width: ${(props) => (props.closed ? '4rem' : '15rem')};
-
+  background-color: #2662D9;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
-
-  background-color: #2662D9;
   justify-content: space-between;
+  transition: transform 0.3s ease, max-width 0.3s ease;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+
+  @media (max-width: 900px) {
+    max-width: 15rem;
+    transform: ${(props) => (props.closed ? 'translateX(-100%)' : 'translateX(0)')};
+  }
 `;
 
 export const ToggleButton = styled.button.withConfig({
@@ -95,12 +101,6 @@ export const StyledNavLink = styled(NavLink)<{ $active?: boolean }>`
     }
   `}
 
-  span {
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-
   svg {
     flex-shrink: 0;
   }
@@ -152,5 +152,32 @@ export const LogoutButton = styled.button`
 
   &:hover {
     background-color: #b53232;
+  }
+`;
+
+export const MobileToggle = styled.button`
+  all: unset;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  background-color: #2662D9;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: none;
+
+  @media (max-width: 900px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg rect {
+    transition: fill 0.2s;
+  }
+
+  &:hover svg rect {
+    fill: #ddd;
   }
 `;

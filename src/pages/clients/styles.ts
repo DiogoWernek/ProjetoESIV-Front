@@ -47,5 +47,16 @@ export const ContentArea = styled.div<ContentAreaProps>`
     display: grid;
     grid-template-columns: 1fr;
     grid-template-columns: repeat(auto-fit, minmax(31rem, 1fr));
+
+    @media (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 900px) {
+    margin-left: 0;
+    width: 100%;
+    padding-top: 4rem;
   }
 `

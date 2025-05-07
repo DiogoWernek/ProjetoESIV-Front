@@ -39,6 +39,12 @@ export const ContentArea = styled.div<ContentAreaProps>`
     gap: 1rem;
     width: 85%;
   }
+
+  @media (max-width: 900px) {
+    margin-left: 0;
+    width: 100%;
+    padding-top: 4rem;
+  }
 `;
 
 export const Card = styled.div`
@@ -92,6 +98,10 @@ export const RadioGroup = styled.div`
       background-color: #fafcff;
       border: 1px solid #2962ff;
     }
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
   }
 `;
 
