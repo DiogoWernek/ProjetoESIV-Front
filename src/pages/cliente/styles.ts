@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-`
+`;
 
 interface ContentAreaProps {
   closed: "open" | "closed";
@@ -10,9 +10,10 @@ interface ContentAreaProps {
 
 export const ContentArea = styled.div<ContentAreaProps>`
   margin-left: ${(props) => (props.closed === "closed" ? "4rem" : "15rem")};
-  width: ${(props) => (props.closed === "closed" ? "calc(100% - 4rem)" : "calc(100% - 15rem)")};
+  width: ${(props) =>
+    props.closed === "closed" ? "calc(100% - 4rem)" : "calc(100% - 15rem)"};
   transition: margin-left 0.3s ease, width 0.3s ease;
-  
+
   height: 100%;
   padding-block: 3rem;
   overflow-y: auto;
@@ -26,7 +27,7 @@ export const ContentArea = styled.div<ContentAreaProps>`
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+
     a {
       cursor: pointer;
     }
@@ -38,7 +39,7 @@ export const ContentArea = styled.div<ContentAreaProps>`
     gap: 1rem;
     width: 85%;
   }
-`
+`;
 
 export const Card = styled.div`
   background: #fff;
@@ -76,6 +77,21 @@ export const RadioGroup = styled.div`
     align-items: center;
     gap: 0.5rem;
   }
+
+  .radio-group {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    &:active {
+      border: 1px solid #2962ff;
+    }
+
+    &:focus-within {
+      background-color: #fafcff;
+      border: 1px solid #2962ff;
+    }
+  }
 `;
 
 export const Grid = styled.div`
@@ -90,6 +106,25 @@ export const StatusSwitch = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+
+  .switch-container {
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #e9e9e9;
+
+    p {
+      font-size: 0.8rem;
+      color: #797981;
+    }
+
+    span {
+      font-weight: 700;
+    }
+  }
 
   .switch {
     position: relative;

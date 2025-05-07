@@ -7,7 +7,8 @@ export const InputWrapper = styled.div`
 
   label {
     font-size: 0.875rem;
-    color: #333;
+    color: #5c5c5c;
+    font-weight: 700;
   }
 
   input {

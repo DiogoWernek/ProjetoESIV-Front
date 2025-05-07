@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Input } from "../../components/input";
 import * as S from "./styles";
-import { ArrowLeft } from "@phosphor-icons/react";
+import { ArrowLeft, Building, User } from "@phosphor-icons/react";
 import { useNavigate, useParams } from "react-router";
 import { api } from "../../services/api";
 import SideBar from "../../components/sideBar";
@@ -182,26 +182,32 @@ export function Cliente() {
                     }}
                   >
                     <S.RadioGroup>
-                      <label>
-                        <input
-                          type="radio"
-                          name="Type"
-                          value="f"
-                          checked={formData.Type === "f"}
-                          onChange={handleChange}
-                        />
-                        Pessoa Física
-                      </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name="Type"
-                          value="r"
-                          checked={formData.Type === "r"}
-                          onChange={handleChange}
-                        />
-                        Pessoa Jurídica
-                      </label>
+                      <div className="radio-group">
+                        <label>
+                          <input
+                            type="radio"
+                            name="Type"
+                            value="f"
+                            checked={formData.Type === "f"}
+                            onChange={handleChange}
+                          />
+                          <User size={20} />
+                          Pessoa Física
+                        </label>
+                      </div>
+                      <div className="radio-group">
+                        <label>
+                          <input
+                            type="radio"
+                            name="Type"
+                            value="r"
+                            checked={formData.Type === "r"}
+                            onChange={handleChange}
+                          />
+                          <Building size={20} />
+                          Pessoa Jurídica
+                        </label>
+                      </div>
                     </S.RadioGroup>
 
                     <S.Grid>
@@ -252,10 +258,16 @@ export function Cliente() {
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          gap: "0.3rem",
+                          gap: "0.4rem",
                         }}
                       >
-                        <label>
+                        <label
+                          style={{
+                            fontSize: "0.875rem",
+                            color: "#5c5c5c",
+                            fontWeight: 700,
+                          }}
+                        >
                           Data de{" "}
                           {formData.Type === "f" ? "Nascimento" : "Fundação"}
                         </label>
@@ -266,9 +278,9 @@ export function Cliente() {
                           onChange={handleChange}
                           style={{
                             padding: "0.5rem",
-                            borderRadius: "0.5rem",
+                            borderRadius: "6px",
                             border: "1px solid #ccc",
-                            height: "2.8rem",
+                            height: "46px",
                           }}
                         />
                       </div>
@@ -281,16 +293,21 @@ export function Cliente() {
                     </S.Grid>
 
                     <S.StatusSwitch>
-                      <span>Status</span>
-                      <label className="switch">
-                        <input
-                          type="checkbox"
-                          name="isActive"
-                          checked={formData.isActive}
-                          onChange={handleChange}
-                        />
-                        <span className="slider" />
-                      </label>
+                      <div className="switch-container">
+                        <div style={{ display: "flex", gap: "0.2rem", flexDirection: "column" }}>
+                          <span>Status</span>
+                          <p>Cliente ativo no sistema</p>
+                        </div>
+                        <label className="switch">
+                          <input
+                            type="checkbox"
+                            name="isActive"
+                            checked={formData.isActive}
+                            onChange={handleChange}
+                          />
+                          <span className="slider" />
+                        </label>
+                      </div>
                     </S.StatusSwitch>
                   </div>
                 )}
