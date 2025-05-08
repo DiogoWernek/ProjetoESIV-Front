@@ -239,8 +239,8 @@ export function Cliente() {
                       <Input
                         label={
                           formData.Type === "f"
-                            ? "Nome completo"
-                            : "Nome fantasia"
+                            ? "Nome Completo"
+                            : "Nome Fantasia"
                         }
                         name="FantasyName"
                         value={formData.FantasyName}
