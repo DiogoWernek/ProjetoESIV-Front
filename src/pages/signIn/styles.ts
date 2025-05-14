@@ -6,6 +6,10 @@ export const AuthContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #f4f6f8;
+
+  @media (max-width: 500px) {
+    padding: 0 0.6rem;
+  }
 `;
 
 export const FormCard = styled.form`

@@ -13,33 +13,33 @@ export function SignIn() {
     e.preventDefault();
 
     try {
-      const res = await api.get("/users", {
-        params: { userName, password },
+      const res = await api.post("/auth/login", {
+        userName,
+        password,
       });
 
-      if (res.data.length > 0) {
-        const user = res.data[0];
+      const token = res.data.token;
+      const name = res.data.userName;
 
-        localStorage.setItem("userId", user.id);
-        localStorage.setItem("name", user.userName);
+      localStorage.setItem("token", token);
+      localStorage.setItem("name", name);
 
-        navigate("/dashboard");
-      } else {
-        Store.addNotification({
-          title: "Erro!",
-          message: "Nome ou senha inválidos.",
-          type: "danger",
-          insert: "top",
-          container: "top-right",
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: {
-              duration: 5000,
-              onScreen: true
-          }
-      });
-      }
+      navigate("/dashboard");
+
     } catch (error) {
+      Store.addNotification({
+        title: "Erro!",
+        message: "Nome ou senha inválidos.",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
       console.error("Erro ao fazer login:", error);
     }
   };
