@@ -16,7 +16,7 @@ import { toCNPJorCPF } from "../../utils/ToCNPJ";
 import { toDATE } from "../../utils/ToDATE";
 import { Loading } from "../Loading";
 import { formatPhone } from "../../utils/ToNumberPhone";
-import { useNavigate } from "react-router";
+import { ModalClient } from "../../components/modalCliente";
 
 const Home = () => {
   const [sidebarClosed, setSidebarClosed] = useState<"open" | "closed">("open");
@@ -26,6 +26,8 @@ const Home = () => {
   const [totalActives, setTotalActives] = useState(0);
   const [totalLegalEntity, setTotalLegalEntity] = useState(0);
   const [totalNaturalPerson, setTotalNaturalPerson] = useState(0);
+  const [selectedClient, setSelectedClient] = useState<any | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getComapanies = async () => {
     try {
@@ -55,11 +57,10 @@ const Home = () => {
     }
   }
 
-  const navigate = useNavigate()
-
-  const handleClientClick = (id: string) => {
-    navigate(`/cliente/${id}`);
-  };  
+  const handleClientClick = (client: any) => {
+    setSelectedClient(client);
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     getComapanies();
@@ -117,8 +118,9 @@ const Home = () => {
                   email={company.Email}
                   phone={formatPhone(company.PhoneCode, company.Phone)}
                   updated_at={toDATE(company.BirthDate)}
-                  onClick={() => handleClientClick(company.id)}
+                  onClick={() => handleClientClick(company)}
                 />
+
 
               ))}
             </div>
@@ -137,6 +139,16 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        {isModalOpen && (
+          <ModalClient
+            client={selectedClient}
+            onClose={() => setIsModalOpen(false)}
+            onDeleted={getComapanies}
+          />
+
+        )}
+
       </S.ContentArea>
     </S.Container>
   );

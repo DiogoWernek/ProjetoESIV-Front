@@ -53,8 +53,13 @@ export function Cliente() {
 
   const unmask = (value: string) => value.replace(/\D/g, "");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const target = e.target as HTMLInputElement;
+    const { name, value, type } = target;
+    const checked = target.checked;
+
 
     let rawValue = value;
 
@@ -64,29 +69,12 @@ export function Cliente() {
       if (formData?.Type === "r") rawValue = rawValue.slice(0, 14);
     }
 
-    if (name === "Phone") {
-      rawValue = unmask(value).slice(0, 9);
-    }
-
-    if (name === "PhoneCode") {
-      rawValue = unmask(value).slice(0, 2);
-    }
-
-    if (name === "CEP") {
-      rawValue = unmask(value).slice(0, 8);
-    }
-
-    if (name === "CityCode") {
-      rawValue = unmask(value).slice(0, 7);
-    }
-
-    if (name === "CountryId") {
-      rawValue = unmask(value).slice(0, 3);
-    }
-
-    if (name === "BirthDate") {
-      rawValue = value;
-    }
+    if (name === "Phone") rawValue = unmask(value).slice(0, 9);
+    if (name === "PhoneCode") rawValue = unmask(value).slice(0, 2);
+    if (name === "CEP") rawValue = unmask(value).slice(0, 8);
+    if (name === "CityCode") rawValue = unmask(value).slice(0, 7);
+    if (name === "CountryId") rawValue = unmask(value).slice(0, 3);
+    if (name === "BirthDate") rawValue = value;
 
     setFormData((prev) =>
       prev
@@ -95,9 +83,38 @@ export function Cliente() {
     );
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData) return;
+
+    const requiredFields = [
+      { field: formData.CEP, name: "CEP" },
+      { field: formData.cnpj, name: "CNPJ/CPF" },
+      { field: formData.AddressDistrict, name: "Bairro" },
+      { field: formData.Type, name: "Tipo de Pessoa (Física ou Jurídica)" },
+      { field: formData.StoreIdNumber, name: "Tipo de Cliente" },
+    ];
+
+    const missing = requiredFields.find((f) =>
+      typeof f.field === "string"
+        ? f.field.trim() === ""
+        : f.field === null || f.field === undefined
+    );
+
+    if (missing) {
+      Store.addNotification({
+        title: "Campo obrigatório!",
+        message: `Preencha o campo: ${missing.name}`,
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: { duration: 5000, onScreen: true },
+      });
+      return;
+    }
 
     try {
       await api.put(`/companies/${id}`, formData);
@@ -109,11 +126,8 @@ export function Cliente() {
         container: "top-right",
         animationIn: ["animated", "fadeIn"],
         animationOut: ["animated", "fadeOut"],
-        dismiss: {
-            duration: 5000,
-            onScreen: true
-        }
-    });
+        dismiss: { duration: 5000, onScreen: true },
+      });
       navigate("/clientes");
     } catch (error) {
       console.error("Erro ao atualizar os dados:", error);
@@ -125,13 +139,12 @@ export function Cliente() {
         container: "top-right",
         animationIn: ["animated", "fadeIn"],
         animationOut: ["animated", "fadeOut"],
-        dismiss: {
-            duration: 5000,
-            onScreen: true
-        }
-    });
+        dismiss: { duration: 5000, onScreen: true },
+      });
     }
   };
+
+
 
   useEffect(() => {
     const fetchAddressFromCEP = async () => {
@@ -150,12 +163,12 @@ export function Cliente() {
           setFormData((prev) =>
             prev
               ? {
-                  ...prev,
-                  AddressStreet: data.logradouro || "",
-                  AddressDistrict: data.bairro || "",
-                  City: data.localidade || "",
-                  State: data.uf || "",
-                }
+                ...prev,
+                AddressStreet: data.logradouro || "",
+                AddressDistrict: data.bairro || "",
+                City: data.localidade || "",
+                State: data.uf || "",
+              }
               : null
           );
         } catch (error) {
@@ -237,6 +250,14 @@ export function Cliente() {
 
                     <S.Grid>
                       <Input
+                        label="Código da Loja"
+                        name="StoreIdNumber"
+                        type="number"
+                        value={formData.StoreIdNumber}
+                        onChange={handleChange}
+                      />
+
+                      <Input
                         label={
                           formData.Type === "f"
                             ? "Nome Completo"
@@ -315,6 +336,34 @@ export function Cliente() {
                         value={formData.HomePage}
                         onChange={handleChange}
                       />
+
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                        <label
+                          style={{
+                            fontSize: "0.875rem",
+                            color: "#5c5c5c",
+                            fontWeight: 700,
+                          }}
+                          htmlFor="Type"
+                        >
+                          Tipo de Cliente
+                        </label>
+                        <S.StyledSelect
+                          name="Type"
+                          id="Type"
+                          value={formData.Type}
+                          onChange={handleChange}
+                        >
+                          <option value="">Selecione um tipo</option>
+                          <option value="f">Consumidor final</option>
+                          <option value="l">Produtor rural</option>
+                          <option value="r">Revendedor</option>
+                          <option value="s">Solidário</option>
+                          <option value="x">Exportação</option>
+                        </S.StyledSelect>
+                      </div>
+
+
                     </S.Grid>
 
                     <S.StatusSwitch>

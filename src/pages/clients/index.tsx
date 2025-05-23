@@ -9,7 +9,7 @@ import { CardCliente } from "../../components/cardClient";
 import { toCNPJorCPF } from "../../utils/ToCNPJ";
 import { formatPhone } from "../../utils/ToNumberPhone";
 import { toDATE } from "../../utils/ToDATE";
-import { useNavigate } from "react-router";
+import { ModalClient } from "../../components/modalCliente";
 
 export function Clients() {
   const [sidebarClosed, setSidebarClosed] = useState<"open" | "closed">("open");
@@ -17,8 +17,8 @@ export function Clients() {
   const [search, setSearch] = useState("");
   const [allCompanies, setAllCompanies] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const navigate = useNavigate()
+  const [selectedClient, setSelectedClient] = useState<any | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getCompanies = async () => {
     try {
@@ -34,8 +34,9 @@ export function Clients() {
     }
   };
 
-  const handleClientClick = (id: string) => {
-    navigate(`/cliente/${id}`);
+  const handleClientClick = (client: any) => {
+    setSelectedClient(client);
+    setIsModalOpen(true);
   };
 
   useEffect(() => {
@@ -111,16 +112,22 @@ export function Clients() {
                     active={company.isActive}
                     cnpj={toCNPJorCPF(company.cnpj)}
                     email={company.Email}
-                    phone={formatPhone(
-                      company.PhoneCode,
-                      company.Phone
-                    )}
+                    phone={formatPhone(company.PhoneCode, company.Phone)}
                     updated_at={toDATE(company.BirthDate)}
-                    onClick={() => handleClientClick(company.id)}
+                    onClick={() => handleClientClick(company)}
                   />
+
                 ))}
               </div>
             </div>
+            {isModalOpen && (
+              <ModalClient
+                client={selectedClient}
+                onClose={() => setIsModalOpen(false)}
+                onDeleted={getCompanies}
+              />
+            )}
+
           </S.ContentArea>
         )
       }

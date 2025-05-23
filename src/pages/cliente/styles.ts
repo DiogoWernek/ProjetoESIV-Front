@@ -191,3 +191,20 @@ export const Button = styled.button`
   align-self: flex-end;
   cursor: pointer;
 `;
+
+export const StyledSelect = styled.select`
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  height: 46px;
+  font-size: 1rem;
+  background-color: white;
+  color: #333;
+  outline: none;
+  transition: border 0.2s;
+
+  &:focus {
+    border-color: #2962ff;
+    background-color: #fafcff;
+  }
+`;
