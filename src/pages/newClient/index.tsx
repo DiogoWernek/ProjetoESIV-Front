@@ -202,6 +202,7 @@ export function NewClient() {
                       }
                       maxLength={formData.Type === "f" ? 14 : 18}
                       onChange={handleChange}
+                      required
                     />
                     <Input label="Email" name="Email" value={formData.Email} onChange={handleChange} />
                     <Input
@@ -262,9 +263,9 @@ export function NewClient() {
 
               {activeTab === "endereco" && (
                 <S.Grid>
-                  <Input label="CEP" name="CEP" value={formData.CEP} onChange={handleChange} />
+                  <Input label="CEP" name="CEP" value={formData.CEP} onChange={handleChange} required />
                   <Input label="Rua" name="AddressStreet" value={formData.AddressStreet} onChange={handleChange} />
-                  <Input label="Bairro" name="AddressDistrict" value={formData.AddressDistrict} onChange={handleChange} />
+                  <Input label="Bairro" name="AddressDistrict" value={formData.AddressDistrict} onChange={handleChange} required />
                   <Input label="Cidade" name="City" value={formData.City} onChange={handleChange} />
                   <Input label="Código da cidade" name="CityCode" value={formData.CityCode} onChange={handleChange} />
                   <Input label="Estado" name="State" value={formData.State} onChange={handleChange} />
