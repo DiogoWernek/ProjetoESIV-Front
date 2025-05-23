@@ -360,6 +360,7 @@ export function Cliente() {
                           <option value="r">Revendedor</option>
                           <option value="s">Solidário</option>
                           <option value="x">Exportação</option>
+                          <option value="matriz">Matriz</option>
                         </S.StyledSelect>
                       </div>
 

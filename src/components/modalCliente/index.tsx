@@ -95,7 +95,15 @@ export const ModalClient = ({
           <p><strong>Razão Social (LegalName):</strong> {client.LegalName}</p>
           <p><strong>CNPJ:</strong> {toCNPJorCPF(client.cnpj)}</p>
           <p><strong>Loja Nº:</strong> {client.StoreIdNumber}</p>
-          <p><strong>Tipo:</strong> {client.Type}</p>
+          <p><strong>Tipo:</strong> {
+            client.Type === 'f' ? 'Consumidor final' :
+              client.Type === 'l' ? 'Produtor rural' :
+                client.Type === 'r' ? 'Revendedor' :
+                  client.Type === 's' ? 'Solidário' :
+                    client.Type === 'x' ? 'Exportação' :
+                      client.Type === 'matriz' ? 'Matriz' :
+                        'Tipo desconhecido'
+          }</p>
           <p><strong>Email:</strong> {client.Email}</p>
           <p><strong>Telefone:</strong> {formatPhone(client.PhoneCode, client.Phone)}</p>
           <p><strong>Data de Nascimento:</strong> {toDATE(client.BirthDate)}</p>
