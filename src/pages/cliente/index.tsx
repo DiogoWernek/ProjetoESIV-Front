@@ -277,6 +277,8 @@ export function Cliente() {
                         }
                         maxLength={formData.Type === "f" ? 14 : 18}
                         onChange={handleChange}
+
+                        disabled
                       />
 
                       <Input
