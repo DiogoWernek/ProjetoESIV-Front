@@ -38,6 +38,7 @@ export function NewClient() {
   });
   const [activeTab, setActiveTab] = useState<"dados" | "endereco">("dados");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const unmask = (value: string) => value.replace(/\D/g, "");
 
@@ -65,6 +66,8 @@ export function NewClient() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
       await api.post("/companies", formData);
 
@@ -98,6 +101,8 @@ export function NewClient() {
           onScreen: true
         }
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -310,8 +315,11 @@ export function NewClient() {
                   <Input label="ID do País" name="CountryId" value={formData.CountryId} onChange={handleChange} />
                 </S.Grid>
               )}
-
+              
+              <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
               <S.Button type="submit">Criar</S.Button>
+              {isLoading && <p>Criando...</p>}
+              </div>
             </form>
           </S.Card>
         </div>
