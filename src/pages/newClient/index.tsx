@@ -115,6 +115,10 @@ export function NewClient() {
             AddressDistrict: data.bairro || "",
             City: data.localidade || "",
             State: data.uf || "",
+            CountryId: data.ibge || "",
+            CountryDescription: "Brasil",
+            CityCode: data.siafi || prev.CityCode,
+            Region: data.regiao || prev.Region,
           }));
         } catch (error) {
           console.error("Erro ao buscar o CEP:", error);
@@ -124,6 +128,38 @@ export function NewClient() {
 
     fetchAddressFromCEP();
   }, [formData.CEP]);
+
+  useEffect(() => {
+    const fetchCompanyFromCNPJ = async () => {
+      if (formData.cnpj.length === 14 && formData.Type === "r") {
+        const formatedCNPJ = formData.cnpj.replace(/\D/g, "");
+        try {
+          const res = await fetch(`https://publica.cnpj.ws/cnpj/${formatedCNPJ}`);
+          if (!res.ok) {
+            console.warn("CNPJ não encontrado ou inválido:", res.status);
+            return;
+          }
+          const data = await res.json();
+
+          setFormData(prev => ({
+            ...prev,
+            FantasyName: data.razao_social || prev.FantasyName,
+            LegalName: data.razao_social || prev.LegalName,
+            CEP: unmask(data.estabelecimento.cep || "") || prev.CEP,
+            Phone: unmask(data.estabelecimento.telefone1 || "") || prev.Phone,
+            PhoneCode: unmask(data.estabelecimento.ddd1 || "") || prev.PhoneCode,
+            Email: data.estabelecimento.email || prev.Email,
+            BirthDate: data.estabelecimento.data_inicio_atividade || prev.BirthDate,
+          }));
+        } catch (err) {
+          console.error("Erro ao buscar dados do CNPJ:", err);
+        }
+      }
+    };
+
+    fetchCompanyFromCNPJ();
+  }, [formData.cnpj, formData.Type]);
+
 
   return (
     <S.Container>

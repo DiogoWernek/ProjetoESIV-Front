@@ -35,7 +35,7 @@ export const ContentArea = styled.div<ContentAreaProps>`
   }
 
   .search-clients {
-    width: fit-content;
+    width: 100%;
     background-color: #fff;
     border: 2px solid #E4E4E7;
     border-radius: 0.5rem;

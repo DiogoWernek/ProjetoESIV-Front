@@ -9,7 +9,17 @@ export function formatCNPJ(cnpj: string) {
 }
 
 export function formatPhone(phone: string) {
-  return phone.replace(/\D/g, "").replace(/(\d{5})(\d{4})/, "$1-$2");
+  const cleaned = phone.replace(/\D/g, "");
+
+  if (cleaned.length <= 4) return cleaned;
+  if (cleaned.length <= 8) {
+    return `${cleaned.slice(0, 4)}-${cleaned.slice(4)}`;
+  }
+  if (cleaned.length <= 9) {
+    return `${cleaned.slice(0, 5)}-${cleaned.slice(5)}`;
+  }
+
+  return cleaned;
 }
 
 export function formatDateToInput(date: string) {
